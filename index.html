@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/688ef9eb0d.js" crossorigin="anonymous"></script>
+    <title>Captación</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-list">
+                <div>
+                    <div class="icon"><i class="fa-solid fa-circle-half-stroke" id="dark-mode" onclick="document.documentElement.classList.toggle(`dark-mode`)"></i></div>
+                    <h3 class="toolTip">Modo Oscuro</h3>
+                </div>
+                <div>
+                    <a class="icon-copy-tkt" href="#container-tkt">
+                        <div class="icon"><i class="fa-solid fa-clipboard"> </i></div>
+                        <h3 class="toolTip">Ticket</h3>
+                    </a>
+
+                </div>
+                <div>
+                    <div class="icon"><i class="fa-solid fa-house" onclick="reset()"></i><a href=""></a></div>
+                    <h3  class="toolTip">Inicio (Esc)</h3>
+                    
+                </div>
+                <div>
+                    <div class="icon"><i class="fa-solid fa-keyboard" onclick="tablaTeclasRapidas()"></i></i></div>
+                    <h3 class="toolTip">Teclas Rápidas (T)</h3>
+
+                </div>
+                <div>
+                    <div class="icon"><i class="fa-solid fa-calendar-days" onclick="tablaPermanencia()"></i></div>
+                    <h3 class="toolTip">Permanencia (M)</h3>
+    
+                </div>
+                <div>
+                    <div class="icon"><i class="fa-solid fa-list" onclick="mostrarListas()"></i></div>
+                    <h3 class="toolTip">Listas (L)</h3>
+    
+                </div>
+            </div>
+            
+        </nav>
+    </header>
+    <h1 id="titulo">Captación</h1>
+    
+    
+
+    <div id="div_botones" align="center">
+        <form id="botones" onchange="deleteAll();">
+            <input type="radio" id="captacion" name="funcion" value="captación" checked>
+                <label for="captacion">Captación</label>
+            <input type="radio" id="retencion" name="funcion" value="retencion">
+                <label for="retencion">Retención</label>
+            <input type="radio" id="upgrade" name="funcion" value="upgrade">
+                <label for="retencion">Upgrade</label>
+        </form>
+
+    </div>
+    <div id="selectores" align="center">
+        <!-- onchange="localidad();" -->
+        <select onchange="localidad()", id="localidad">
+            <datalist id="listaLocalidades">
+                <option value="Seleccione localidad" id="localidadDefault" selected disabled>Seleccione localidad</option>
+                <option value="001">[001] Santa Fe</option>
+                <option value="Santo Tomé">[001] Santo Tomé</option>
+                <option value="002">[002] Paraná</option>
+                <option value="003">[003] Corrientes</option>
+                <option value="004">[004] Resistencia</option>
+                <option value="005">[005] Posadas</option>
+                <option value="100">[100] CABA</option>
+                <option value="101">[101] Crespo</option>
+                <option value="102">[102] Gral. San Martín</option>
+                <option value="103">[103] Campana</option>
+                <option value="104">[104] Coronda</option>
+                <option value="105">[105] San Pedro</option>
+                <option value="106">[106] Goya</option>
+                <optgroup label="Otros">
+                    <option value="Monte Vera">Monte vera</option> 
+                    <option value="Angel Gallardo">Angel Gallardo</option>
+                    <option value="101">Racedo</option>
+                    <option value="B° Paproski">B° Paproski</option>
+                    <option value="Sauce Viejo">Sauce Viejo</option>
+                    <option value="Rincon">Rincon</option>
+                    <option value="Barranqueras">Barranqueras</option>
+                    <option value="Red Codificada Resistencia">Red Codificada Resistencia</option>
+                    <option value="San Luis del Palmar">San Luis del Palmar</option>
+                    <option value="002">Colonia Avellaneda</option>
+                    <option value="002">Oro Verde</option>
+                    <option value="002">San Benito</option>
+                    <option value="002">Sauce Mountrul</option>
+                    <option value="002">Villa Fontana</option>
+                    <option value="002">Tizano Pintos</option>
+                    <option value="Santo Tomé">Zona Potosí</option>
+                    <option value="101">Gdor. Etchevehere</option>
+                </optgroup>
+            </datalist>
+        </select>
+    </div>
+
+    <div id="modal-container" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Teclas Rápidas</h2>
+          <div class="modal-group-column">
+              <div class="modal-column">
+                <h3>Seleccionar Localidad</h3>
+                  <ul>
+                    <li>Pad Num: 1  ➜ Santa Fé</li>
+                    <li>Pad Num: 2  ➜ Paraná</li>
+                    <li>Pad Num: 3  ➜ Corrientes</li>
+                    <li>Pad Num: 4  ➜ Resistencia</li>
+                    <li>Pad Num: 5  ➜ Posadas</li>
+                    <li>Pad Num: 6  ➜ Camapana</li>
+                    <li>Pad Num: 7  ➜ Coronda</li>
+                    <li>Pad Num: 8  ➜ Santo Tomé</li>
+                    <li>Pad Num: 9  ➜ Goya</li>
+                  </ul>
+              </div>
+              <div class="modal-column">
+                <h3>Seleccionar Servicio</h3>
+                  <ul>
+                    <li>Q  ➜ G1 (Internet)</li>
+                    <li>W  ➜ G2 (TV + Internet)</li>
+                    <li>E  ➜ G3 (TV + Internet + Telefonía)</li>
+                  </ul>
+              </div>
+              <div class="modal-column">
+                <h3>Seleccionar Velocidad</h3>
+                  <ul>
+                    <li>1  ➜ 50MB</li>
+                    <li>2  ➜ 100MB</li>
+                    <li>3  ➜ 200MB</li>
+                  </ul>
+              </div>
+              <div class="modal-column">
+                <h3>Otros</h3>
+                  <ul>
+                    <li>Barra espaciadora  ➜ Retención/Captación</li>
+                    <li>A  ➜ Agregar Servicio</li>
+                    <li>S  ➜ Quitar Servicio</li>
+                    <li>D  ➜ Agregar Costo Adicional</li>
+                    <li>L  ➜ Listas</li>
+                    <li>Esc  ➜ Inicio</li>
+                    <li>P  ➜ Precio de lista</li>
+                    <li>T  ➜ Ver Teclas Rápidas</li>
+                    <li>Enter  ➜ Calcular</li>
+                    <li>Enter  ➜ Calcular Precio Lista</li>
+                  </ul>
+              </div>
+
+
+          </div>
+        </div>
+      
+    </div>
+
+    <div id="modal-container-permanencia" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2 class="modal-title-permanencia">Permanencia</h2>
+          <label for="fecha">Ingrese fecha de intalación</label>
+          <input name="fecha" type="date" id="fechaPermanencia">
+          <h3>Monto por permanecia:</h3>  
+          <span id="costoPermanencia"></span>
+          <button id="botonPermanencia">Revisar</button>
+          </div>
+        </div>
+      
+    </div>
+
+    <div id="modal-container-listas" class="modal">
+        <div class="modal-content modal-content-lista">
+          <span class="close">&times;</span>
+          <h2 class="modal-title-permanencia">Listas</h2>
+            <select name="selectorLista" onchange="swichListas()" id="select-listas">
+                <option value="Seleccione lista" id="listaDefault" selected disabled>Seleccione Lista</option>
+                <option value="premium">Packs Premium</option>
+                <option value="adicionales">Costos Adicionales</option>
+                <option value="gigacam">Gigacam</option>
+                <!-- <option value="pbu">Tarifas PBU</option>
+                <option value="retencionesPremium">Retenciones Premium</option> -->
+            </select>
+            <div class="app-list">
+
+            </div>
+          </div>
+        </div>
+      
+    </div>
+
+
+    <a href="#" class="subir">
+        <i class="fa-sharp fa-solid fa-arrow-up"></i>
+    </a>
+
+    <div class="alerta-container-red">
+        <i class="fa-solid fa-triangle-exclamation alerta-icon"></i>
+        <p class="alerta-msj-red"></p>
+    </div>
+
+    <div class="alerta-container-green">
+        <i class="fa-solid fa-circle-check alerta-icon" ></i>
+        <p class="alerta-msj-green"></p>
+    </div>
+
+    <footer class="footer">
+        <p>Politica Comercial Julio 2023</p>
+        <p>Vigencia a partir de Agosto (1/8/2023)</p>
+    </footer>
+
+</body>
+<script src="codex.js"></script>
+</html>
+
